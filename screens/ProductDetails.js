@@ -9,9 +9,11 @@ import {
   Pressable,
 } from "react-native";
 import products from "../data/products";
+import { useSelector } from "react-redux";
 
 const ProductDetails = () => {
-  const product = products[0];
+  const product = useSelector((state) => state.products.selectedProduct);
+
   const { width } = useWindowDimensions();
 
   return (
@@ -33,7 +35,7 @@ const ProductDetails = () => {
           <Text style={styles.title}>{product.name}</Text>
 
           {/* Price */}
-          <Text style={styles.price}>${product.price}</Text>
+          <Text style={styles.price}>{product.price} Ugx</Text>
 
           {/* Description */}
           <Text style={styles.description}>{product.description}</Text>
@@ -52,7 +54,7 @@ const ProductDetails = () => {
 
 const styles = StyleSheet.create({
   title: { fontSize: 32, fontWeight: "500", marginVertical: 10 },
-  price: { fontWeight: "500", fontSize: 18, letterSpacing: 1 },
+  price: { fontWeight: "600", fontSize: 18, letterSpacing: 1 },
   description: {
     marginVertical: 10,
     fontSize: 16,
