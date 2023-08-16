@@ -1,29 +1,41 @@
 import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
-import cart from "../data/cart";
 import CartListItem from "../components/CartListItem";
+import { useSelector } from "react-redux";
+import {
+  selectDeliveryPrice,
+  selectTotal,
+  selectSubtotal,
+} from "../src/store/cartSlice";
 
+const ShoppingCartTotals = () => {
+  const subtotal = useSelector(selectSubtotal);
+  const deliveryFee = useSelector(selectDeliveryPrice);
+  const total = useSelector(selectTotal);
+  return (
+    <View style={styles.totalsContainer}>
+      <View style={styles.row}>
+        <Text style={styles.text}>Subtotal</Text>
+        <Text style={styles.text}>{subtotal}</Text>
+      </View>
+      <View style={styles.row}>
+        <Text style={styles.text}>Delivery</Text>
+        <Text style={styles.text}>{deliveryFee}</Text>
+      </View>
+      <View style={styles.row}>
+        <Text style={styles.textBold}>Total</Text>
+        <Text style={styles.textBold}>{total}</Text>
+      </View>
+    </View>
+  );
+};
 const ShoppingCart = () => {
+  const cartItems = useSelector((state) => state.cart.items);
   return (
     <>
       <FlatList
-        data={cart}
+        data={cartItems}
         renderItem={({ item }) => <CartListItem cartItem={item} />}
-        ListFooterComponent={() => (
-          <View style={styles.total}>
-            <View style={styles.row}>
-              <Text style={styles.text}>Subtotal</Text>
-              <Text style={styles.text}>410,00 Ugx</Text>
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.text}>Delivery</Text>
-              <Text style={styles.text}>100,00 Ugx</Text>
-            </View>
-            <View style={styles.row}>
-              <Text style={styles.textb}>Total</Text>
-              <Text style={styles.textb}>510,00 Ugx</Text>
-            </View>
-          </View>
-        )}
+        ListFooterComponent={ShoppingCartTotals}
       />
       <Pressable style={styles.button}>
         <Text style={styles.buttonText}>Checkout</Text>
@@ -33,35 +45,40 @@ const ShoppingCart = () => {
 };
 
 const styles = StyleSheet.create({
-  total: {
-    paddingTop: 20,
+  totalsContainer: {
     margin: 20,
+    paddingTop: 10,
     borderColor: "gainsboro",
     borderTopWidth: 1,
-  },
-  button: {
-    backgroundColor: "black",
-    position: "absolute",
-    bottom: 30,
-    width: "90%",
-    alignSelf: "center",
-    alignItems: "center",
-    padding: 20,
-    borderRadius: 100,
-  },
-  buttonText: { color: "white", fontWeight: "500", fontSize: 16 },
-  text: {
-    fontSize: 16,
-    color: "gray",
-  },
-  textb: {
-    fontSize: 16,
-    fontWeight: "500",
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
-    marginVertical: 10,
+    marginVertical: 2,
+  },
+  text: {
+    fontSize: 16,
+    color: "gray",
+  },
+  textBold: {
+    fontSize: 16,
+    fontWeight: "500",
+  },
+
+  button: {
+    position: "absolute",
+    backgroundColor: "black",
+    bottom: 30,
+    width: "90%",
+    alignSelf: "center",
+    padding: 20,
+    borderRadius: 100,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "white",
+    fontWeight: "500",
+    fontSize: 16,
   },
 });
 export default ShoppingCart;
