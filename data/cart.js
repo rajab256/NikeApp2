@@ -3,7 +3,7 @@ export default [
     product: {
       id: "1",
       image:
-        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike1.png",
+        "https://ug.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/41/183401/1.jpg?8343",
       name: "Wild Berry",
       price: 160,
     },
@@ -14,7 +14,7 @@ export default [
     product: {
       id: "2",
       image:
-        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike2.png",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTysIHMpPjwF1d6tjG4naP45g9NG3VydUyXmQ&usqp=CAU",
       name: "Air Force 1",
       price: 169,
     },
@@ -25,7 +25,7 @@ export default [
     product: {
       id: "3",
       image:
-        "https://notjustdev-dummy.s3.us-east-2.amazonaws.com/nike/nike3.png",
+        "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTIQCmJT6mWFK_xvswKJAqKNzB3LS7151WvXQ&usqp=CAU",
       name: "Nike Cosmic",
       price: 129,
     },
